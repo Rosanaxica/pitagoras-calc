@@ -31,9 +31,6 @@ function pegaValorDigitado() {
 
             mostraValor(txt)//<<<<<envia valor como parametro
         }
-        else {
-            limpaCampos()
-        }
 
     }
 
@@ -68,9 +65,8 @@ function retornaValorCalculado(valorCateto) {
 }
 
 function limpaCampos() {
+ 
     document.getElementById(campoSelecionado).value = "";
-    resultadoFinal.innerText = '';
-    resultadoFinal.classList.remove("bottom");
 
     if (campoSelecionado == 'catetoOposto') {
         catetoOposto = '';
@@ -84,15 +80,24 @@ function limpaCampos() {
 
     }
 
+    if (catetoAdjacente == "" || catetoOposto == "") {
+        debugger
+        resultadoFinal.innerText = '';
+        resultadoFinal.classList.remove("bottom");
+        console.log("limpa Campos-->cateto 1:", catetoOposto, "cateto 2:", catetoAdjacente, "resultado Final:", resultadoFinal.innerHTML)
+
+    }
 }
 
 function enviaDados(cateto1, cateto2) {
+    console.log("cateto 1:", cateto1, "cateto 2:", cateto2)
     let resultado = 0;
     let dado = {
         "cat_op": parseInt(cateto1),
         "cat_adj": parseInt(cateto2),
     }
-    console.log(JSON.stringify(dado))
+
+  if(cateto1!==null && cateto2!==null){
     fetch('https://atlas-231814.appspot.com/calcula',
         {
             headers: {
@@ -110,7 +115,7 @@ function enviaDados(cateto1, cateto2) {
             resultadoFinal.innerText = resultado.toFixed(5)
             resultadoFinal.classList.add("bottom");
 
-        });
+        });}
 
 }
 function changeColor() {
