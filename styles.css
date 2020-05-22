@@ -41,7 +41,7 @@ nav.navbar {
     color: black;
 }
 
-.subtitle {
+.subtitle h2 {
     color: var(--font-secondary);
     width: 100%;
     font-size: 1rem;
@@ -207,11 +207,7 @@ background-attachment: fixed;
         padding: 10%;
         margin-top: 2%;
     }
-    .row {
-        margin-top: 20%;
-    }
-}
-
+ 
 /* estilo do triangulo */
 
 .wrap {

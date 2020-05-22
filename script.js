@@ -23,6 +23,7 @@ function pegaValorDigitado() {
 
     if (campoSelecionado != '') {
         if (campoSelecionado == 'catetoOposto') {
+
             catetoOposto = '';
         } else { catetoAdjacente = ''; }
         txt = document.getElementById(campoSelecionado).value;//<<<<<pega o valor do campo selecionado
@@ -40,7 +41,7 @@ function pegaValorDigitado() {
 
 function mostraValor(valor) {
 
-    let campoTxt = document.getElementById(campoSelecionado)//<<<pega campo de texto
+    let campoTxt = document.getElementById(campoSelecionado)//<<<pega campo de textoass
 
     if (campoSelecionado == 'catetoOposto') {
         catetoOposto = catetoOposto + valor; ///pega a varivel preenchida
