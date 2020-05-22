@@ -23,7 +23,6 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
-    outline: none;
     transition: all 0.3s;
     margin: 1% 0;
 }
@@ -94,7 +93,7 @@ input[type=number] {
     transition: none;
     border: 0!important;
     border-radius: 5px;
-    outline: none!important;
+    '   '
 }
 
 .rose:hover {
@@ -128,7 +127,7 @@ button {
     transition: none;
     border: 0!important;
     border-radius: 5px;
-    outline: none!important;
+
 }
 
 button:hover {
