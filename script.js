@@ -116,7 +116,7 @@ function enviaDados(cateto1, cateto2) {
                 return data.hip;
 
             }).then(function (data) {
-            resultadoFinal.innerText = data.toFixed(5)
+                resultadoFinal.innerText = data.toFixed(5)
                 resultadoFinal.classList.add("bottom");
                 resultado = "";
             });
