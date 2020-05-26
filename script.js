@@ -13,7 +13,7 @@ function pegaCampoClicado(campo) {
 }
 
 function limpaCampos() {
-  
+
     document.getElementById(campoSelecionado).value = "";
 
     if (campoSelecionado == 'catetoOposto') {
@@ -29,7 +29,7 @@ function limpaCampos() {
     }
 
     if (catetoAdjacente == "" || catetoOposto == "") {
-    
+
         resultadoFinal.innerText = '';
         resultadoFinal.classList.remove("bottom");
 
@@ -50,16 +50,16 @@ function pegaValorDigitado() {
             catetoOposto = '';
 
         } else {
-             catetoAdjacente = '';
-            
-            }
-      
+            catetoAdjacente = '';
+
+        }
+
         txt = document.getElementById(campoSelecionado).value;//<<<<<pega o valor do campo selecionado
         if (txt != '') {
 
             mostraValor(txt)//<<<<<envia valor como parametro
         }
-      
+
     }
 
 }
@@ -113,12 +113,12 @@ function enviaDados(cateto1, cateto2) {
                 return response.json();
 
             }).then(function (data) {
-                resultado = data.hip;
+                return data.hip;
 
-                resultadoFinal.innerText = resultado.toFixed(5)
+            }).then(function (data) {
+            resultadoFinal.innerText = data.toFixed(5)
                 resultadoFinal.classList.add("bottom");
-                resultado="";
-
+                resultado = "";
             });
     }
 
