@@ -2,15 +2,38 @@ var campoSelecionado = '';
 var catetoOposto = '';
 var catetoAdjacente = '';
 var resultadoOposto = ''
-var resultadoFinal = ''
-
 var resultadoFinal = document.getElementById('resultadoFinal');
+
 var resultadoOposto = document.getElementById('resultadoCatetoOposto')
 var resultadoAdjacente = document.getElementById('resultadoCatetoAdjacente')
 
 function pegaCampoClicado(campo) {
     campoSelecionado = campo.id;
 
+}
+
+function limpaCampos() {
+  
+    document.getElementById(campoSelecionado).value = "";
+
+    if (campoSelecionado == 'catetoOposto') {
+        catetoOposto = '';
+        resultadoOposto.innerText = '';
+        resultadoOposto.classList.remove("bottom")
+
+    } else {
+        catetoAdjacente = '';
+        resultadoAdjacente.innerText = '';
+        resultadoAdjacente.classList.remove("bottom")
+
+    }
+
+    if (catetoAdjacente == "" || catetoOposto == "") {
+    
+        resultadoFinal.innerText = '';
+        resultadoFinal.classList.remove("bottom");
+
+    }
 }
 
 function pegaValor(botao) {
@@ -25,13 +48,18 @@ function pegaValorDigitado() {
         if (campoSelecionado == 'catetoOposto') {
 
             catetoOposto = '';
-        } else { catetoAdjacente = ''; }
+
+        } else {
+             catetoAdjacente = '';
+            
+            }
+      
         txt = document.getElementById(campoSelecionado).value;//<<<<<pega o valor do campo selecionado
         if (txt != '') {
 
             mostraValor(txt)//<<<<<envia valor como parametro
         }
-
+      
     }
 
 }
@@ -64,58 +92,35 @@ function retornaValorCalculado(valorCateto) {
     return resultado
 }
 
-function limpaCampos() {
- 
-    document.getElementById(campoSelecionado).value = "";
-
-    if (campoSelecionado == 'catetoOposto') {
-        catetoOposto = '';
-        resultadoOposto.innerText = '';
-        resultadoOposto.classList.remove("bottom")
-
-    } else {
-        catetoAdjacente = '';
-        resultadoAdjacente.innerText = '';
-        resultadoAdjacente.classList.remove("bottom")
-
-    }
-
-    if (catetoAdjacente == "" || catetoOposto == "") {
-        debugger
-        resultadoFinal.innerText = '';
-        resultadoFinal.classList.remove("bottom");
-        console.log("limpa Campos-->cateto 1:", catetoOposto, "cateto 2:", catetoAdjacente, "resultado Final:", resultadoFinal.innerHTML)
-
-    }
-}
-
 function enviaDados(cateto1, cateto2) {
-    console.log("cateto 1:", cateto1, "cateto 2:", cateto2)
+
     let resultado = 0;
     let dado = {
         "cat_op": parseInt(cateto1),
         "cat_adj": parseInt(cateto2),
     }
 
-  if(cateto1!==null && cateto2!==null){
-    fetch('https://atlas-231814.appspot.com/calcula',
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(dado)
-        }).then(function (response) {
-            return response.json();
+    if (cateto1 !== null && cateto2 !== null) {
+        fetch('https://atlas-231814.appspot.com/calcula',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(dado)
+            }).then(function (response) {
+                return response.json();
 
-        }).then(function (data) {
-            resultado = data.hip;
+            }).then(function (data) {
+                resultado = data.hip;
 
-            resultadoFinal.innerText = resultado.toFixed(5)
-            resultadoFinal.classList.add("bottom");
+                resultadoFinal.innerText = resultado.toFixed(5)
+                resultadoFinal.classList.add("bottom");
+                resultado="";
 
-        });}
+            });
+    }
 
 }
 function changeColor() {
